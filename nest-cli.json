@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/serveless-microservices/src",
+  "monorepo": true,
+  "root": "apps/serveless-microservices",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/serveless-microservices/tsconfig.app.json"
+  },
+  "projects": {
+    "serveless-microservices": {
+      "type": "application",
+      "root": "apps/serveless-microservices",
+      "entryFile": "main",
+      "sourceRoot": "apps/serveless-microservices/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/serveless-microservices/tsconfig.app.json"
+      }
+    },
+    "user": {
+      "type": "application",
+      "root": "apps/user",
+      "entryFile": "main",
+      "sourceRoot": "apps/user/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/user/tsconfig.app.json"
+      }
+    },
+    "dynamo": {
+      "type": "library",
+      "root": "libs/dynamo",
+      "entryFile": "index",
+      "sourceRoot": "libs/dynamo/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/dynamo/tsconfig.lib.json"
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+service: serverless-aws-nodejs
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  stage: ${opt:stage, 'local'}
+  region: ${self:custom.config.region}
+  environment:
+    LOCALSTACK_HOST: {env:LOCALSTACK_HOST, "localhost"}
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+    REGION: ${self:provider.region}
+    STAGE: ${self:provider.stage}
+    CORS_ALLOW_ORIGIN: ${self:custom.config.cors.ALLOW_ORIGIN}
+    CORS_ALLOW_HEADERS: ${self:custom.config.cors.ALLOW_HEADERS}
+    CORS_ALLOW_METHODS: ${self:custom.config.cors.ALLOW_METHODS}
+
+package:
+  excludeDevDependencies: true
+  individually: true
+
+plugins:
+  - serverless-offline
+
+custom:
+  config: ${file(./stages/index.stage.yml):${opt:stage, self:provider.stage}}
+  serverless-offline:
+    useChildProcesses: true
+
+functions:
+  main:
+    handler: dist/apps/user/main.handler
+    events:
+      - http:
+          method: ANY
+          path: '{proxy+}'
