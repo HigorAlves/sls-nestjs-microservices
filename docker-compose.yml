@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   localstack:
-    container_name: "localstack"
+    container_name: localstack-sls
     image: localstack/localstack
     restart: on-failure
     ports:
