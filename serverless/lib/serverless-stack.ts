@@ -1,5 +1,3 @@
-import * as path from 'path'
-
 import { Stack, StackProps } from 'aws-cdk-lib'
 import * as gateway from 'aws-cdk-lib/aws-apigateway'
 import * as lambda from 'aws-cdk-lib/aws-lambda'
