@@ -9,6 +9,7 @@ services:
       - "4566:4566"   # LocalStack Gateway
     environment:
       - DOCKER_HOST=unix:///var/run/docker.sock
+      - REQUIRE_PRO=1
     volumes:
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
