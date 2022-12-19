@@ -39,7 +39,7 @@
     "@nestjs/microservices": "^9.2.0",
     "@nestjs/platform-express": "^9.0.0",
     "@vendia/serverless-express": "^4.10.1",
-    "aws-cdk": "^2.50.0",
+    "aws-cdk": "^2.55.1",
     "aws-lambda": "^1.0.7",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0"
