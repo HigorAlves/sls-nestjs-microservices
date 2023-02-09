@@ -9,27 +9,28 @@ services:
       - "4566:4566"   # LocalStack Gateway
     environment:
       - DOCKER_HOST=unix:///var/run/docker.sock
+      - REQUIRE_PRO=1
     volumes:
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
 
-  app:
-    container_name: serverless-app
-    restart: on-failure
-    build: .
-    volumes:
-      - .:/src
-      - nodemodules:/src/node_modules
-    ports:
-      - 3000:3000
-    links:
-      - localstack
-    depends_on:
-      - localstack
-    environment:
-      LOCALSTACK_HOST: localstack
-      DYNAMODB_PORT: 4566
-      NODE_ENV: "development"
+#  app:
+#    container_name: serverless-app
+#    restart: on-failure
+#    build: .
+#    volumes:
+#      - .:/src
+#      - nodemodules:/src/node_modules
+#    ports:
+#      - 3000:3000
+#    links:
+#      - localstack
+#    depends_on:
+#      - localstack
+#    environment:
+#      LOCALSTACK_HOST: localstack
+#      DYNAMODB_PORT: 4566
+#      NODE_ENV: "development"
 
 #  test:
 #    container_name: serverless-test
